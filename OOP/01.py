@@ -24,3 +24,11 @@ print(yueyue.name)
 print(yueyue.age)
 
 yueyue.dohomework()
+# print(PythonStudent.__dict__)
+
+#yueyue.name = str(yueyue.name)
+yueyue.name = "cb"
+yueyue.age = 28
+
+print(yueyue.name)
+print(yueyue.age)
