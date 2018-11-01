@@ -20,7 +20,7 @@ class PythonStudent():
 
 #实例化
 yueyue = PythonStudent()
-yueyue.name
-yueyue.age
+print(yueyue.name)
+print(yueyue.age)
 
 yueyue.dohomework()
