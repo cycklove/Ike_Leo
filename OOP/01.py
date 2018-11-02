@@ -32,3 +32,26 @@ yueyue.age = 28
 
 print(yueyue.name)
 print(yueyue.age)
+
+print("-----------------")
+
+class Teacher():
+    name = "dana"
+    age = 19
+
+    def say(self):
+        self.name = "yaona"
+        self.age = 17
+        print("My name is {0}".format(self.name))
+        print("My age is {0}".format(self.age))
+        print("My age is {0}".format(__class__.age))
+
+    def sayAgain(): # 调用绑定类函数要使用类名
+        print(__class__.name)
+        print(__class__.age)
+        print("Hello, nice to see you again")
+
+t = Teacher()
+t.say()
+# 调用绑定类函数要使用类名
+Teacher.sayAgain()
