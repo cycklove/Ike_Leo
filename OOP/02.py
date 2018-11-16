@@ -37,7 +37,8 @@ class Animel():
     pass
 
 class PaxinAni(Animel):
-    pass
+    def __int__(self):
+        print("Paxing Dongwu")
 
 class Dog(PaxinAni):
     # __init__就是构造函数 每次实例化的时候第一个被调用 因为主要工作是进行初始化
@@ -46,3 +47,14 @@ class Dog(PaxinAni):
 
 # 实例化的时候 括号内的参数需要跟构造函数参数匹配
 kaka = Dog()
+
+# super 是一个类
+print(type(super))
+help(super)
+
+class A():
+    pass
+class B(A):
+    pass
+print(A.__mro__)
+print(B.__mro__)
