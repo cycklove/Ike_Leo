@@ -71,3 +71,78 @@ class C(B):
 
 #首先查找C的构造函数 如果没有 则向上按照MRO顺序查找父类的构造函数 直到找到为止
 c = C("我是C")
+
+#Mixin案例
+class Person():
+    name = "leo"
+    age = 18
+    def eat(self):
+        print("EAT......")
+    def drink(self):
+        print("drink......")
+    def sleep(self):
+        print("sleep......")
+
+class Teacher(Person):
+    def work(self):
+        print("Work")
+class Student(Person):
+    def study(self):
+        print("study")
+class Tutor(Teacher,Student):
+    pass
+
+t = Tutor()
+print(Tutor.__mro__)
+print(t.__dict__)
+print(Tutor.__dict__)
+
+print("*"*20)
+class TeacherMixin():
+    def work(self):
+        print("work")
+class StudentMixin():
+    def study(self):
+        print("study")
+class TutorMixin(Person,TeacherMixin,StudentMixin):
+    pass
+
+tt = TutorMixin()
+print(TutorMixin.__mro__)
+print(tt.__dict__)
+print(TutorMixin.__dict__)
+
+#issubclass
+class A():
+    pass
+class B(A):
+    pass
+class C():
+    pass
+
+print(issubclass(B,A))
+print(issubclass(C,A))
+
+# isinstance
+class A():
+    pass
+a = A()
+print(isinstance(a,A))
+print(isinstance(A,A))
+
+#hasattr
+class A():
+    name = "noname"
+
+a = A()
+print(hasattr(a,"name"))
+print(hasattr(a,"age"))
+
+# help案例
+help(setattr)
+
+#dir 案例
+class AA():
+    pass
+
+dir(AA)
