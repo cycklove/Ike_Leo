@@ -216,3 +216,61 @@ class Human(metaclass=abc.ABCMeta):
         print("{0} sleep".format(self))
 
 Human.sleep("Leo")
+
+# 自己组装一个类  函数名可以当变量使用
+class A():
+    pass
+
+def say(self):
+    print("saying......")
+
+say(9)
+
+A.say = say
+
+a= A()
+a.say()
+
+from types import MethodType
+
+class B():
+    pass
+
+def say(self):
+    print("saying......")
+
+b = B()
+b.say = MethodType(say,B)
+b.say()
+
+# 利用type造一个类
+# 先定义类应该具有的成员函数
+def say(self):
+    print("saying....")
+
+def talk(self):
+    print("Talking......")
+
+# 用type来创建一个类
+A = type("Aname",(object,),{"class_say":say,"class_talk":talk})
+# 然后可以像正常访问一样使用类
+a = A()
+a.class_say()
+a.class_talk()
+
+# 元类
+# 元类写法是固定的 它必须继承自type
+# 元类一般命名以MetaClass结尾
+class  leoMetaClass(type):
+    # 注意以下写法
+    def __new__(cls, name, bases, attrs):
+        #自己的业务处理
+        print("我是元类")
+        attrs['id'] = '000000'
+        attrs['addr'] = '湖南长沙市长沙县泉塘街道'
+        return type.__new__(cls, name, bases, attrs)
+#元类定义完就可以使用 使用注意写法
+class Teacher(object,metaclass=leoMetaClass):
+    pass
+
+t = Teacher()
