@@ -68,3 +68,99 @@ print(os.linesep)
 # 当前系统名称
 # windows:  nt       mac unix linux: posix
 print(os.name)
+
+# abspath（） 将路径转化为绝对路径
+# 格式 os.path.abspath('路径')
+# 返回值 路径的绝对路径形式
+
+# linux中
+# . 点号 代表当前目录
+# .. 双点 代表父目录
+absp = os.path.abspath('')
+print(absp)
+
+# basename() 获取路径中的文件名部分
+# 格式 os.path.basename（'路径'）
+# 返回值 文件名字符串
+
+bn = os.path.basename(sys.argv[0])
+print(bn)
+
+# join() 将多个路径拼成一个路径
+# 格式 os.path.join（路径1，路径2.....）
+h1 = "d:\\leo"
+h2 = "ike.doc"
+pj = os.path.join(h1,h2)
+print(pj)
+
+# split() 将路径切割为文件夹部分和当前文件部分
+# 格式 os.path.split (路径)
+# 返回值： 路径和文件名组成的元组
+print(os.path.split(os.getcwd()+os.path.basename(sys.argv[0])))
+
+# isdir() 检测是否是目录
+# 格式 os.path.isdir(路径)
+# 返回值 布尔值
+rst = os.path.isdir(os.getcwd())
+print(rst)
+print(os.path.isdir(sys.argv[0]))
+
+# exists() 检测文件或者目录是否存在
+# 格式 os.path.exists（路径）
+# 返回值 布尔值
+e = os.path.exists(os.getcwd())
+print(e)
+print(os.path.exists("F:\\"))
+
+# shutil 模块
+# 格式 shutil.copy(来源路径，目标路径)
+# 返回值 返回目标路径
+# 拷贝的同时 可以给文件重命名
+import shutil
+'''rst = shutil.copy("e:\\pycharm.txt","d:\\pycharmmmm.txt")
+print(rst)'''
+
+#copy2() 复制文件 保留原数据（文件信息）
+# 格式 shutil.copy2（来源路径，目标路径）
+# 返回值： 返回目标路径
+# 注意 copy和copy2的唯一区别在于copy2复制文件时尽量保留原数据
+
+# copyfile() 将一个文件中的内容复制到另外一个文件当中
+# 格式 shutil.copyfile（源路径，目标路径）
+# 返回值  无
+'''rst = shutil.copyfile("e:\\工作\SQL.txt","d:\\pycharmmmm.txt")
+print(rst)'''
+
+# move 移动文件/文件夹
+# 格式 shutil.move(源路径，目标路径)
+# 返回值 目标路径
+'''rst = shutil.move("e:\\pycharm.txt","d:\\")
+print(rst)'''
+
+# 归档和压缩
+# make_archive() 归档操作
+# 格式shutil.make_archive('归档后的目录和文件名','后缀','需要归档的文件夹')
+# 返回值 归档之后的地址
+
+# 是想得到一个叫做leo.zip 的归档文件
+'''rst = shutil.make_archive("d:\leo","zip","d:\按键精灵9")
+print(rst)'''
+
+# unpack_archive() 解包
+# 格式 shutil.unpack_archive("归档文件地址","解包之后的地址")
+# 返回值 解包后的地址
+import  zipfile
+
+# 创建一个zipfile对象 表示一个zip文件 参数file表示文件的路径或者类文件对象
+zf = zipfile.ZipFile("d:\leo.zip")
+
+# ZipFile.getinfo(name)
+# 获取zip文档内指定文件的信息 返回一个zipfile.zipinfo对象 它包括文件的详细信息
+rst = zf.getinfo("qmacro.ini") #不可以是zip里子文件夹里的 要在根目录
+print(rst)
+
+# zipfile.namelist()
+# 获取zip文档内所有文件的名称列表
+nl = zf.namelist()
+for i in nl:
+    print(i)
