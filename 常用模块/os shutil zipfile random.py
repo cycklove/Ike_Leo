@@ -163,4 +163,49 @@ print(rst)
 # 获取zip文档内所有文件的名称列表
 nl = zf.namelist()
 for i in nl:
-    print(i)
+    if '.bak' in i:
+        print(i)
+
+# zipfile.extractall([path[,members[,pwd]]])
+# 解压zip文档中的所有文件到当前目录 参数members的默认值为zip文档内的所有文件名称
+
+''' rst = zf.extractall("e:\\ajjl9") '''
+
+# random
+# 格式 random.random()
+# 返回值 随机0-1之间的小数
+import random
+rm = random.random()
+print(rm)
+print(int(rm*100))
+
+#random.randrange
+#参数：
+     #start -- 指定范围内的开始值，包含在范围内
+     #stop -- 指定范围内的结束值，不包含在范围内。
+     #step -- 指定递增基数
+rm1 = random.randrange(1,101)
+print(rm1)
+
+# random.randint
+#参数：
+     #x -- 指定范围内的开始值，包含在范围内
+     #y -- 指定范围内的结束值，包含在范围内。
+rm2 = random.randint(1,100)
+print(rm2)
+
+# choice() 随机返回序列中的某个值
+# 格式 random.choice(序列)
+# 返回值 序列中的某个值
+l = [str(i)+" leo" for i in range(100,200)]
+rst = random.choice(l)
+print(rst)
+
+# shuffle()  随机打乱列表
+# 格式 random.shuffle(列表)
+# 返回值 打乱顺序之后的列表
+l1 = [i for i in range(10)]
+print(l1)
+
+random.shuffle(l1)
+print(l1)
