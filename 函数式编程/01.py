@@ -91,3 +91,166 @@ def myadd(x,y):
 
 rst = reduce(myadd,[1,2,3,4,5,6,7,8,9])
 print(rst)
+
+# filter案例
+# 需要定义过滤函数
+# 过滤函数要求有输入 返回布尔值
+# 对于一个列表 对其进行过滤 偶数组成一个新列表
+def iseven(a):
+    return  a % 2 == 0
+
+l = [ i for i in range(20)]
+
+rst = filter(iseven,l)
+# 返回的filter内容的一个可迭代对象
+print(rst)
+print(list(rst))
+
+# 排序的案例
+a = [12,56,456,9,456,3,4,6,1899,5]
+al = sorted(a,reverse=True) # 不加reverse=True为升序  加reverse=True为降序
+print(al)
+
+# 排序的案例2
+a = [-12,123,121,4,6,489,-123,99,-322]
+al = sorted(a,key=abs)  # key=abs按绝对值排序
+print(al)
+
+# 排序案例3 sorted
+astr = ['ddd','www','leo','LL','jingjing','owner']
+
+str1 = sorted(astr)
+print(str1)
+str2 = sorted(astr,key=str.lower) #转化为小写再排序
+print(str2)
+
+# 返回函数
+# 定义一个普通函数
+def myf(a):
+    print('in myf')
+    return None
+a = myf(9)
+print(a)
+
+# 函数作为返回值返回 被返回的函数在函数体内定义
+def myf2():
+    def myf3():
+        print("in myf3")
+        return 3
+    return myf3
+
+# 使用上面定义
+# 调用myf2 返回一个函数myf3 赋值给f3
+f3 = myf2()
+print(type(f3))
+print(f3)
+
+print(f3())
+
+# 复杂一点的返回函数的例子
+# args 参数列表
+# myf3定义函数 返回内部定义的函数myf5
+# myf5使用了外部变量 这个变量是myf4的参数
+def myf4( *args):
+    def myf5():
+        rst = 0
+        for n in args:
+            rst += n
+        return  rst
+    return myf5
+
+f5 = myf4(1,2,5,6,8,9,7,1,3)
+# f5的调用
+print(f5())
+
+# 闭包常见坑
+def count():
+    # 定义列表 列表里存放的是定义的函数
+    fs = []
+    for i in range(1,4):
+        # 定义一个函数f f是一个闭包结构
+        def f():
+            return i*i
+        fs.append(f)
+    return fs
+f1,f2,f3 = count()
+print(f1())
+print(f2())
+print(f3())
+# 出现的问题：
+# 造成上述状况的原因是 返回函数引用了变量i i并非立即执行 而是等到三个函数都返回了的时候才统一使用 此时i已经变成了3
+#最终调用的时候 都返回的是3*3
+# 此问题描述成 返回闭包时 返回函数不能引用任何循环变量
+# 解决方案 再创建一个函数 用该函数的参数绑定循环变量的当前值 无论该循环变量以后如何改变 已经绑定的函数参数值不在改变
+def count1():
+    def f(j):
+        def g():
+            return j*j
+        return g
+    fs = []
+    for i in range(1,4):
+        fs.append(f(i))
+    return fs
+f1,f2,f3 = count1()
+print(f1())
+print(f2())
+print(f3())
+
+# 装饰器
+def hello():
+    print("hello world")
+hello()
+
+f = hello
+f()
+
+# f和hello是一个函数
+print(id(f))
+print(id(hello))
+
+print(f.__name__)
+print(hello.__name__)
+
+# 现在有新的需求
+# 对hello功能进行扩展 每次打印hello之前打印当前系统时间
+# 而实现这个功能又不能改动现有代码
+# ==>使用装饰器
+
+#任务
+#对hello函数进行功能扩展 每次执行hello打印当前时间
+import time,datetime
+# 高阶函数 以函数作为参数
+
+def ptime(f):
+    def wapper(*args,**kwargs):
+        print("Time: ", time.strftime('%Y{0}%m{1}%d{2} %H:%M:%S').format('年','月','日'))
+        return f(*args,**kwargs)
+    return wapper
+# 上面定义了装饰器 使用的时候需要用到@ 此符号是Python的语法糖
+@ptime
+def hello():
+    print("hello world")
+
+hello()
+
+print("------分隔符-------")
+@ptime
+def hello2():
+    print("今天很郁闷 那些人都是傻逼")
+    print("滚")
+
+hello2()
+print("------分隔符-------")
+# 上面对函数的装饰使用了系统定义的语法糖
+# 下面开始手动执行下装饰器
+# 先定义函数
+def hello3():
+    print("我是手动执行的")
+
+hello3()
+
+hello3 = ptime(hello3)
+hello3()
+
+f = ptime(hello3)
+f()
