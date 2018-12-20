@@ -112,7 +112,7 @@ for i in range(10):
     #time.sleep(0.1)
 
 # strftime 将时间元组转化为自定义的字符串格式
-# 把时间表示成 2018年12月26日 15:58
+# 把时间表示成 2018年12月12日 15:58
 t = time.localtime()
 ft = time.strftime('%Y{0}%m{1}%d{2} %H:%M').format('年','月','日')
 print(ft)
