@@ -254,3 +254,122 @@ hello3()
 
 f = ptime(hello3)
 f()
+
+# 偏函数
+# 把字符串转化成十进制数字
+i1 = int("12345")
+print(i1)
+# 求八进制的字符串12345 表示成十进制的数字是多少
+i2 = int("12345",base=8)
+print(i2)
+
+# 新建一个函数 此函数是默认输入的字符串是16进制的数字
+# 把此字符串返回十进制的数字
+def int16(x,base=16):
+    return int(x,base)
+
+print(int16("12345"))
+
+import functools
+# 实现上面int16的功能
+int16 = functools.partial(int,base=16)
+
+i16 = int16("12345")
+print(i16)
+
+# zip 案例
+l1 = [1,2,3,4,5]
+l2 = [11,22,33,44,55]
+
+z = zip(l1,l2)
+print(type(z))
+print(z)
+l3 = []
+for i in z:
+    l3.append(i)
+print(l3)
+
+l1 = ["wangwang","mingyue","yyt"]
+l2 = [89,60,78]
+
+z = zip(l1,l2)
+
+for i in z:
+    print(i)
+
+l3 = [i for i in z]
+print(l3)
+print(type(l3))
+
+# enumerate
+l1 = [11,22,33,44,55]
+
+em =enumerate(l1)
+
+l2 = [i for i in em]
+print(l2)
+
+em = enumerate(l1,start=1) # start 从多少开始
+l2 = [i for i in em]
+print(l2)
+
+# namedtuple
+import  collections
+Point = collections.namedtuple("point",['x','y'])
+p = Point(11,22)
+print(p.x)
+print(p[0])
+
+circle = collections.namedtuple("circle",['x','y','r'])
+c = circle(100,150,50)
+print(c)
+print(type(c))
+# 检测到底是属于谁的子类
+isinstance(c,tuple)
+
+#deque
+from collections import deque
+q = deque(['a','b','c'])
+print(q)
+
+q.append('d')
+print(q)
+
+q.appendleft('x')
+print(q)
+
+# defaultdict
+from collections import defaultdict
+d1 = {"one":1,"two":2,"three":3}
+# lambda表达式 直接返回字符串
+func = lambda : "陈大拿"
+d2 = defaultdict(func)
+d2["one"] = 1
+d2["two"] = 2
+print(d2['one'])
+print(d2['ten'])
+
+# counter
+from collections import Counter
+c = Counter("fasjifjqiojfkdsnklgnioneqwionfknsglnklnklsdngkl") #统计每个字符出现的次数
+print(c)
+ct = c.elements()
+j = 0
+for i in ct:
+    j+=1
+print(j)
+
+s = ["leo","love","love","love"]
+c = Counter(s)
+c2 = s.count("love")
+print(c)
+print(c2)
+obj =c.elements()
+j = 0
+for i in obj:
+    j +=1
+print(j)
+
+
+
+
