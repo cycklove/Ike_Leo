@@ -55,9 +55,105 @@ with open(r"d:\sql2.txt", "r") as f:
 # 让程序暂停 可以使用time下的sleep函数
 import time
 with open(r"d:\sql2.txt","r") as f:
-    #read参数的单位是字符 可以理解成一个汉字就是一个字符
     strchar = f.read(3)
+    # tell函数  用来显示文件读写指针的当前位置
+    pos = f.tell()
     while strchar:
-        print(strchar)
-        time.sleep(1)
+        print(strchar.replace("\r","").replace("\n","").strip())
+        print(pos)
+        time.sleep(0.1)
         strchar = f.read(3)
+        pos = f.tell()
+
+# 结果说明
+# tell的返回数字的单位是byte
+# read是以字符为单位
+
+# write 案例
+# 向文件追加一句诗
+# a代表追加方式打开
+with open(r"d:\sql2.txt",mode="r") as f:
+    if "生活不止眼前的苟且" in f.read():
+        print("字符串已经存在，不追加写入")
+    else:
+        with open(r"d:\sql2.txt", mode="a") as g:
+            str = g.write("\n生活不止眼前的苟且 \n还有诗和远方")
+            # 可以直接写入行 用writelines 参数可以是list格式
+            # l = ["i","love","yh"]
+            # g.用writelines(l)
+            print("追加写入成功")
+    with open(r"d:\sql2.txt", mode="r") as h:
+        nr = h.read()
+        print(nr)
+
+# 序列化案例
+import pickle
+age = 19
+name = "Ike_Leo"
+with open(r"d:\sql3.txt", "wb") as f:
+    pickle.dump(age,f)
+with open(r"d:\sql3.txt", "ab") as f:
+    pickle.dump(name,f)
+# 反序列化案例
+with open(r"d:\sql3.txt", "rb") as f:
+    age = pickle.load(f)
+    name = pickle.load(f)
+    print(age,name)
+
+a = [19,"lke","ike leo yh",[172,62]]
+with open(r"d:\sql3.txt", "wb") as f:
+    pickle.dump(a,f)
+with open(r"d:\sql3.txt", "rb") as f:
+    a = pickle.load(f)
+    print(a)
+
+# shelve创建文件并使用
+import shelve
+# 打开文件
+# shv相当于一个字典
+shv = shelve.open(r"d:\sql4.txt")
+shv['one'] = 1
+shv['two'] = 2
+shv['three'] = 3
+shv['four'] = {"one":1,"two":2,"three":3}
+
+shv.close()
+# 通过以上案例发现 shelve自动创建的不仅仅是一个sql4.txt 还包括其他格式文件
+
+# shelve读取案例
+shv = shelve.open(r"d:\sql4.txt")
+try:
+    print(shv['one'])
+    print(shv['three'])
+except Exception as e:
+    print(repr(e))
+finally:
+    shv.close()
+
+# shelve忘记写回 需要使用强制写回
+shv = shelve.open(r"d:\sql4.txt",writeback=True)
+try:
+    k1 = shv["four"]
+    print(k1)
+    #此时 一旦shelve关闭 则内容还是存在于内存中 没有写回数据库
+    k1["one"] = 100
+except Exception as e:
+    print(repr(e))
+finally:
+    shv.close()
+
+shv = shelve.open(r"d:\sql4.txt")
+try:
+   k1 = shv["four"]
+   print(k1)
+finally:
+    shv.close()
+
+# shelve 使用with管理上下文环境
+with shelve.open(r"d:\sql4.txt",writeback=True) as shv:
+    k1 = shv["four"]
+    print(k1)
+    k1["one"] = 1000
+
+with shelve.open(r"d:\sql4.txt") as shv:
+    print(shv["four"])
