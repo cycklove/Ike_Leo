@@ -43,10 +43,13 @@ def main():
 
     print("正在运行的子线程数量为：{0}".format(threading.activeCount()))
 
+    t1.join()
+    t2.join()
+    t3.join()
+
     print("ALL done at: ",datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 if __name__ == '__main__':
     main()
     while True:
-        time.sleep(10)
         exit()
