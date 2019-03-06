@@ -11,7 +11,7 @@ if __name__ == '__main__':
     t.start()
 
     i = 0
-    while i<100:
+    while i<10:
         print("{0}*********".format(i))
         time.sleep(3)
         i += 1

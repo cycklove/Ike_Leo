@@ -75,6 +75,32 @@
     - semaphore
         - 允许一个资源最多由多个线程同时使用
         - 案例16
-    - threading,Timer
-        - 案例17        
-                       
+    - threading.Timer
+        - 案例17
+        - Timer是利用多线程 在制定时间后启动一个功能
+    - 可重入锁 threading.RLock()
+        - 一个锁 可以被一个线程多次申请
+        - 主要解决递归调用的时候 需要申请锁的情况
+        - 案例18                 
+     
+# 线程替代方案
+- subprocess
+    - 完全跳过线程 使用进程
+    - 是Python进程的主要替代方案
+    - Python2.4后引入
+- multiprocessing
+    - 使用threading接口派生 使用子进程
+    - 允许作为多核或者多CPU派生进程 接口跟threading非常相似
+    - Python2.6
+    
+- concurrent.futures
+    - 新的异步执行模块
+    - 任务级别的操作
+    - Python3.2后引入
+    
+# 多进程
+- 进程间通讯(InterprocessCommunication, IPC) 
+- 进程之间无任何共享状态
+- 进程的创建
+    - 直接生成Process实例对象 案例19
+    - 派生子类 案例20                                
