@@ -67,8 +67,45 @@ print(three)
 def fib(max):
     n,a,b = 0,0,1 # 注意写法
     while n < max:
+        yield  b
         print(b)
         a,b = b,a+b #注意写法
         n += 1
+    # 需要注意 报出异常的返回值是return的返回值
+    return "Ike_Leo"
 
-    return "Done"
+g = fib(5)
+
+for i in range(5):
+    rst = next(g)
+    print(rst)
+
+'''for i in range(1,10):
+    for j in range(1,i+1):
+        print("%d*%d=%2d" % (i,j,i*j),end = " ")
+    print(" ")'''
+
+ge = fib(10)
+
+for i in ge:#for循环中使用生成器
+    print(i)
+
+# 协程代码案例1
+def simple_coroutine():
+    print("-> start")
+    x = yield
+    print("-> recived",x)
+
+#主线程
+try:
+    sc = simple_coroutine()
+    print(1111)
+    next(sc) #预激
+
+    print(2222)
+    sc.send("zhexiao")
+except Exception as e:
+    print("异常是：",repr(e))
+finally:
+    print("此次结束")
+
