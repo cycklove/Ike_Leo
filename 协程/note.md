@@ -80,3 +80,23 @@
 - pip install aiohttp安装
 
 # concurrent.futures
+- python3新增的库
+- 类似其他语言的线程池的概念
+- 利用multiprocessing实现真正的并行计算
+- 核心原理 以真正的形式 并行运行多个Python解释器 从而令Python程序可以利用多核CPU来提示执行速度 由于子进程与主解释器相分离 所以他们的全局解释器锁也是相互独立的 每个子进程都能够完整的使用一个CPU内核
+- concurrent.futures.Executor
+    - ThreadPoolExecutor
+    - ProcessPoolExecutor
+    - 执行的时候需要自行选择
+- submit(fn,args,kwargs)
+    - fn:异步执行的函数
+    - args,kwargs参数
+    - 案例07
+    
+# current中map函数
+- map(fn \*iterables,timeout=None)
+    - 跟map函数类似
+    - 函数需要异步执行
+    - timeout 超时时间
+    - map跟submit使用一个就行
+    - 案例08       
