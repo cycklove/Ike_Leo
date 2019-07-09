@@ -7,7 +7,7 @@
 
 import socket
 
-def clentFunc():
+def clientFunc():
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
     text = "i love yh"
@@ -24,4 +24,4 @@ def clentFunc():
     print(data)
 
 if __name__ == '__main__':
-    clentFunc()
+    clientFunc()

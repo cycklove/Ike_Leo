@@ -21,10 +21,12 @@ def serverfunc():
     # recvfrom
     data,addr = sock.recvfrom(500)
 
-    print(data,type(data))
+    print(data)
+    print(type(data))
     # 发送过来的数据是bytes格式 必须通过解码才能得到str格式内容
     text = data.decode()
-    print(text, type(text))
+    print(type(text))
+    print(text)
 
     # 给对方返回的消息
     rsp = "wo bu e"
