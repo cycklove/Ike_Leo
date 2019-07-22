@@ -72,4 +72,53 @@
         - 3.发送内容到对方服务器
         - 4.接受对方的反馈
         - 5.关闭链路通路        
-                                      
+                           
+# FTP编程
+- FTP(FileTranferProtocal)文件传输协议
+- 用途 定制一些特殊的上传下载文件的服务
+- 用户分类 登陆FTP服务器必须有一个账号
+    - Real账户 注册账户
+    - Guest账户  可能临时对某一类人的行为进行授权
+    - Anonymous账户  匿名账户 允许任何人
+    
+- FTP文件表示
+    - 分三段表示FTP服务器上的文件
+    - HOST主机地址
+    - DIP目录
+    - FILE文件名称
+    
+# Mail编程
+- 起源
+    - 1969 Leonard k 教授发给同事的 “LO”
+    - 1971 美国国防部自主的阿帕网的通讯机制
+    - 通讯地址里@
+    - 1987年中国的第一份电子邮件
+- 管理程序
+    - Euroda使邮件普及
+    - Netscape outlook foxmail
+    - Hotmail
+- 参考资料
+    -[官网](https://docs.python.org/3/library/email.mime.html)   
+    
+## 邮件的工作流程
+   - MUA邮件用户代理
+   - MTA邮件传输代理
+   - MDA邮件投递代理
+     
+- 编写程序
+    - 发送：MUA > MTA SMTP 包含MTA > MTA
+    - 接受：MDA > MUA POP3 IMAP
+    
+- 准备工作
+    - 注册邮箱
+    - 第三方邮箱需要特殊设置
+        - 进入设置中心
+        - 取得授权码
+        
+- Python for mail
+    - SMTP协议负责发送邮件
+        - 使用email模块构建邮件
+        - 使用smtplib模块发送邮件
+    - POP3协议接收邮件                         
+    
+                                                 
