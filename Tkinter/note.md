@@ -1,0 +1,99 @@
+#GUI介绍
+- Graphicaluserinterface
+- GUI for Python: Tkinter wxpython pyqt
+- Tkinter
+    - 绑定的TK GUI工具集 用Python包装的TCL代码
+- PyGTK
+    - Tkinter的替代品
+- wxPython
+    - 跨平台的Python GUI
+- PyQT
+    - 跨平台的
+    - 商业授权可能有问题      
+    
+- 推荐资料
+    - 辛星GUI     辛星Python
+    - Python GUI programming cookbook
+    
+# 常用的组件
+- 按钮
+    - button      按键
+    - radiobutton  单选
+    - checkbutton  多选按钮
+    - listbox      列表框
+    
+- 文本输入组件
+    - entry      单行文本
+    - text       多行文本
+    
+- 标签组件
+    - label      可以显示图片和文字
+    - message    可以根据内容将文字换行
+    
+- 菜单
+    - menu       菜单
+    - menu       菜单按钮组件
+    
+- 滚动条
+    - scale      滑块
+    - scrollbar  滚动条
+    
+- 其他组件
+    - canvas   画布
+    - frame    框架 将多个组件编组
+    - toplevel 子窗口容器组件    
+                                                          
+- button属性
+    - text 显示文本内容
+    - command 指定Button的事件处理函数
+    - compound 指定文本与图像的位置关系
+    - bitmap 指定位图
+    - focus_set 设置当前组件得到的焦点
+    - master 代表了父窗口
+    - bg 设置背景颜色
+    - fg 设置前景颜色
+    - font 设置字体大小
+    - height 设置显示高度、如果未设置此项，其大小以适应内容标签
+    - relief  指定外观装饰边界附近的标签,默认是平的,可以设置参数;flat、groove、raised、ridge、solid、sunken
+    - width  设置显示宽度，如果未设置此项，其大小以适应内容标签
+    - wraplength  将此选项设置为所需的数量限制每行的字符,数默认为0
+    - state  设置组件状态;正常(normal),激活(active),禁用(disabled)
+    - anchor 设置Button文本在控件上的显示位置 可用值:n(north),s(south),w(west),e(east),和ne,nw,se,sw
+    - bd     设置Button的边框大小;bd(bordwidth)缺省为1或2个像素
+    - textvariable  设置Button与textvariable属性
+    
+# 组件布局
+- 三种布局
+    - pack   按照方位布局
+    - place  按照坐标布局
+    - grid   网格布局
+    
+- pack布局
+    - 最简单 代码量最少 挨个摆放
+    - 通用方式   组件对象.pack()
+    - side   停靠方位  可选值LEFT TOP RIGHT BOTTON
+    - fill   填充方式  X Y BOTH NONE
+    - expande YES NO
+    - anchor  N E S W CENTER
+    - ipadx  x方向的内边距
+    - ipady  y方向的内边距
+    - padx  x方向的外边界
+    - pady  y方向的外边界
+    
+- grid布局
+    - 通用方式   组件对象.grid()
+- place布局
+
+## 消息机制
+- 消息的传递机制
+    - 自动发出事件/消息
+    - 消息由系统负责发送到队列
+    - 由相关组价进行绑定/设置
+    - 后端自动选择感兴趣的事件并作出相应反应
+- 消息格式
+    - <modifier-]---type-[-detail]>
+    - <Button-1> Button表示一个按钮时间 1代表的是鼠标左键 2代表中键
+    - <KeyPress-A>  键盘A
+    - <Control-Shift-KeyPress-A> 同时按下Control,Shift,A
+    - [键位对应名称](https://infohost.nmt.edu/tcc/help/pubs/tkinter/web/key-names.html)       
+    
