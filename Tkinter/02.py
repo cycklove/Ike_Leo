@@ -4,10 +4,9 @@ def baselabel(event):
     '''global baseframe
     lb = tkinter.Label(baseframe,text="谢谢点击")
     lb.pack()'''
-
     baseframe2 = tkinter.Tk()
     baseframe2.wm_title("ike2")
-    btu2 =tkinter.Button(baseframe2,text="哈哈哈！！！",fg="red")
+    btu2 =tkinter.Button(baseframe2,text="哈哈哈！！！",fg="blue")
     btu2.bind("<Button-1>", baselabel2)
     btu2.pack()
 
@@ -33,5 +32,6 @@ btu = tkinter.Button(baseframe,text="模拟按钮",fg="red")
 # 获取鼠标左键点击 并启动相应的处理函数baselabel
 btu.bind("<Button-1>",baselabel)
 btu.pack()
+
 
 baseframe.mainloop()

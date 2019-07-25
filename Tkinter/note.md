@@ -97,3 +97,12 @@
     - <Control-Shift-KeyPress-A> 同时按下Control,Shift,A
     - [键位对应名称](https://infohost.nmt.edu/tcc/help/pubs/tkinter/web/key-names.html)       
     
+## Tkinter的绑定
+- bind_all 全局范围的绑定 默认的是全局快捷键 比如F1是帮助文档
+- bind_class 接受三个参数 第一个是类名 第二个是事件 第三个是操作
+- bind 单独对某一个实例绑定
+- unbind 解绑
+
+# Entry
+- 输入框 功能单一
+- entry["show"]="*"  设置遮挡字符      
