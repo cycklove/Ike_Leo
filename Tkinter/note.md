@@ -105,4 +105,26 @@
 
 # Entry
 - 输入框 功能单一
-- entry["show"]="*"  设置遮挡字符      
+- entry["show"]="*"  设置遮挡字符
+
+# 菜单
+# 普通菜单
+- 第一个menu类定义的是parent
+- add_command 添加菜单项 如果菜单是顶层菜单 则从左向右添加 否则就是下拉菜单
+    - label 制定菜单项的名称
+    - command 点击后相应的调用函数
+    - acceletor 快捷键
+    - underline 指定是否菜单下是否有横线
+    - menu 指定使用哪一个作为顶级菜单
+    - 05
+# 级联菜单
+- add_cascade 级联菜单 作用是引出后面的菜单
+- add_cascade的menu属性 指明把菜单级联到哪个菜单上
+- label  名称
+- 过程
+    - 建立menu实例
+    - add_command
+    - add_cascade
+    - 06   
+    
+      

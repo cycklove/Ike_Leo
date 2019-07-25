@@ -12,17 +12,18 @@ def reg():
 
     p = re.compile(r'[^A-Za-z0-9]')
 
-    #if name =="111" and pwd == "222":
-    if p.match(name) and p.match(pwd):
+    if name =="111" and pwd == "222":
+    #if p.match(name) and p.match(pwd) and (t1==0 or t2==0):
+        lb3["fg"] = "green"
+        lb3["text"] = "登录成功"
+    else:
         lb3["fg"] = "red"
         lb3["text"] = "用户名或密码错误"
         e1.delete(0, t1)
         e2.delete(0, t2)
-    else:
-        lb3["fg"] = "green"
-        lb3["text"] = "登录成功"
 
 baseframe = tkinter.Tk()
+baseframe.geometry("400x300")
 
 lb1 = tkinter.Label(baseframe,text="用户名:")
 lb1.grid(row=0,column=0,stick=tkinter.W)
