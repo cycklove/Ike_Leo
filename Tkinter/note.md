@@ -127,4 +127,32 @@
     - add_cascade
     - 06   
     
-      
+# 弹出式菜单
+- 也叫上下文菜单
+- 实现的大致思路
+    - 建立菜单并向菜单添加各种功能
+    - 监听鼠标右键
+    - 如果右键点击 则根据位置判断弹出
+    - 调用Menu的pop方法
+    - 07
+- add_separator分隔符 
+
+# canvas画布
+- 画布 可以自由的在上面绘制图形
+- 再画布上绘制对象 通常create_xxx  xxx=对象类型  例如 line,rectangle
+- 08 09
+- 画布的作用是把一定组件画到画布上显示出来
+- 画布所支持的组件
+    - arc
+    - bitmap
+    - image(bitmapimage photoimage)
+    - line
+    - oval
+    - polygon
+    - rectangle
+    - text
+    - window(组件)
+- 每次调用create_xxx都会返回一个创建的组件的ID 同时也可以用tag属性指定其标签
+- 通过调用canvas.move实现一个一次性动作
+    - 10
+         
