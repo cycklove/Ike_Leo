@@ -46,5 +46,18 @@
     - 案例03
     - geturl 返回请求对象的url
     - info 请求反馈对象的meta信息
-    - getcode 返回的http code 比如404 200 500           
-                           
+    - getcode 返回的http code 比如404 200 500
+- request.data 的使用
+    - 访问网络的两种方法
+        - get  
+            - 利用参数给服务器传递信息
+            - 参数为dict 然后用parse编码
+        - post
+            - 一般向服务器传递参数使用
+            - post是把信息自动加密处理
+            - 我们如果想使用post信息 需要用到data参数               
+            - 使用post 意味着HTTP的请求头可能需要更改
+            - 简而言之 一旦更改请求方法 请注意其他请求头部信息相适应
+        - urilib.parse.urlencode可以将字符串自动装换成上面的
+        - 06
+        - 简易的英汉译词典 07                                                           
