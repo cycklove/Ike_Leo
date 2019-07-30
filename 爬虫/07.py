@@ -1,10 +1,8 @@
 import tkinter
-import re
-from colorama import Fore,Back,Style
 from urllib import request,parse
 import json
 
-
+# 点击button调用函数
 def reg():
     baseurl = "https://fanyi.baidu.com/sug"
     # 存放用来模拟from的数据 一定是dict格式
@@ -24,8 +22,8 @@ def reg():
         # 因为使用post 至少包含content-length 字段
         "Content-Length": len(data)
     }
-
-    rsp = request.urlopen(baseurl, data=data)
+    req = request.Request(url=baseurl, data=data, headers=headers)
+    rsp = request.urlopen(req)
 
     json_data = rsp.read().decode("utf-8")
 
@@ -43,6 +41,7 @@ def reg():
     lb3["fg"] = "red"
     lb3["text"] = aa
 
+# entry输入文本后按回车键调用的函数
 def reg2(event):
     baseurl = "https://fanyi.baidu.com/sug"
     # 存放用来模拟from的数据 一定是dict格式
@@ -62,8 +61,8 @@ def reg2(event):
         # 因为使用post 至少包含content-length 字段
         "Content-Length": len(data)
     }
-
-    rsp = request.urlopen(baseurl, data=data)
+    req = request.Request(url=baseurl, data=data, headers=headers)
+    rsp = request.urlopen(req)
 
     json_data = rsp.read().decode("utf-8")
 
@@ -82,24 +81,31 @@ def reg2(event):
     lb3["text"] = aa
 
 baseframe = tkinter.Tk()
-baseframe.geometry("600x400")
+baseframe.geometry("800x600")
 baseframe.wm_title("英汉翻译词典")
 
-lb1 = tkinter.Label(baseframe,text="请输入需要翻译的内容:")
+photo = tkinter.PhotoImage(file="D:\PycharmProjects\Ike_Leo\爬虫\\bg.gif")#file：t图片路径
+
+lb3 = tkinter.Label(baseframe,text = "",justify = tkinter.LEFT,image = photo,compound = tkinter.CENTER,font=("微软雅黑"))
+lb3.place(x=1,y=1,width=800,height=600)
+
+lb1 = tkinter.Label(baseframe,text="请输入需要翻译的内容:",bg="white",fg="green",font=("微软雅黑",18))
 #lb1.grid(row=0,column=0,stick=tkinter.W)
 lb1.pack()
 
-e1 = tkinter.Entry(baseframe,width=50)
+e1 = tkinter.Entry(baseframe,width=50,insertbackground='green', highlightthickness=1,fg="green")
 #e1.grid(row=0,column=1,stick=tkinter.E)
+e1.bind("<Return>",reg2)
 e1.pack()
 
-btn = tkinter.Button(baseframe,text="确定",command = reg,fg="black")
+btn = tkinter.Button(baseframe,text="确定",command = reg,fg="green",font=("微软雅黑",18),highlightthickness =1)
 #btn.grid(row=2,column=1,stick=tkinter.E)
-btn.bind("<Return>",reg2)
 btn.pack()
 
-lb3 = tkinter.Label(baseframe, text="")
-#lb3.grid(row=10, column=1)
-lb3.pack()
+#lb3 = tkinter.Label(baseframe, text="",image=photo,compound = "center")
+
+lb4 = tkinter.Label(baseframe,text="©Develop:Ike...Leo",bg="white",fg="green",font=("微软雅黑",18))
+#lb1.grid(row=0,column=0,stick=tkinter.W)
+lb4.place(x=240,y=500)
 
 baseframe.mainloop()
