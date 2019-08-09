@@ -192,5 +192,27 @@
         - request.HTTPHandler()
         - request.HTTPSHandler()
     - 创建handler后 使用opener打开 打开后相应的业务由相应的handler处理
-    - cookie作为一个变量 打印出来 案例 16                                 
+    - cookie作为一个变量 打印出来 案例 16
+        - name  名称
+        - value 值
+        - domain 可以访问此cookie的域名
+        - path 可以访问此cookie的页面路径
+        - expire 过期时间
+        - size 大小
+        - HTTP字段                              
+    - cookie的保存 - FileCookieJar  案例17
+    - cookie的读取 案例18
+    
+- SSL
+    - SSL证书是指遵守SSL安全套阶层协议的服务器数字证书（SecureSocketLayer）
+    - 美国网景公司开发
+    - CA（certificateauthority）是数字证书认证中心 是发放管理废除数字证书的收信人第三方机构 
+    - 遇到不信任的SSL证书 需要单独处理 案例19
+- js加密
+    - 有的反爬虫策略采用js对需要传输的数据进行加密处理（通常是取md5值）
+    - 经过加密 传输的就是密文
+    - 加密函数或者过程一定是在浏览器完成 也就是一定会把代码（js代码）暴露给使用者
+    - 通过阅读加密算法 就可以模拟出加密过程 从而达到破解      
+    
+             
                                                                                               
