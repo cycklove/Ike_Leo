@@ -36,7 +36,7 @@ headers = {
 
 rsp = requests.post(baseurl,data=data,headers=headers)
 
-print(rsp.text)
+#print(rsp.text)
 print(rsp.json())
 
 

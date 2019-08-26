@@ -88,6 +88,7 @@ def youdao(key):
 
 
     print(json_data)
+    print(type(json_data))
 
 if __name__ == '__main__':
     a = input("input:")
