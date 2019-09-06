@@ -1,0 +1,9 @@
+<note>
+<to>George</to>
+<from nm="ike">
+    <xm>John</xm>
+    <age nl="nianling">twenty-eighth</age>
+</from>
+<heading>Reminder</heading>
+<body>Don't forget the meeting!</body>
+</note>
