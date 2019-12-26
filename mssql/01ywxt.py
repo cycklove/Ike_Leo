@@ -16,7 +16,6 @@ def ywxtselect():
         while row:  # 循环读取所有结果
             print("机构ID=%s,机构名称=%s" %(row[0],row[1]),"系统IP=",i) # 输出结果
             row = cursor.fetchone()
-            time.sleep(0.2)
 
         # connect.commit()  # 提交 查询语句时不需要此条
         cursor.close()
@@ -72,6 +71,6 @@ def ywxtupdeins():
             connect.close()
 
 if __name__ == '__main__':
-    # ywxtselect()
+    ywxtselect()
     # ywxtproc()
-    ywxtupdeins()
+    # ywxtupdeins()

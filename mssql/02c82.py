@@ -29,5 +29,5 @@ def c82proc():
     conn.close()
 
 if __name__ == '__main__':
-    # c82select()
-    c82proc()
+    c82select()
+    # c82proc()
