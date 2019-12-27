@@ -1,5 +1,7 @@
 import pymysql
 from itertools import chain
+import xlsxwriter
+from openpyxl import Workbook
 
 def apossaleswenjian():
 
@@ -72,7 +74,46 @@ def apossalesselect():
         c.close()
         db.close()
 
+
+def apossalestable():
+
+    dbname=['apos_sales_0','apos_sales_1','apos_sales_10','apos_sales_11','apos_sales_12','apos_sales_13','apos_sales_14',
+    'apos_sales_15','apos_sales_16','apos_sales_17','apos_sales_18','apos_sales_19','apos_sales_2','apos_sales_3',
+    'apos_sales_4','apos_sales_5','apos_sales_6','apos_sales_7','apos_sales_8','apos_sales_9']
+
+    dbname2=['apos_goods_0','apos_goods_1']
+
+    # 打开文件
+    wb = Workbook()  # 创建文件对象
+    # grab the active worksheet
+    sheetname = 'Ike_Leo_Data'
+
+    ws = wb['Sheet']
+    ws.title = sheetname
+    ws = wb.get_sheet_by_name(sheetname)
+
+    ws['A1'] = "单号"
+    ws['B1'] = "门店编码"
+
+
+    for i in dbname:
+        db = pymysql.connect("192.168.6.42", "root", "Frxs!@#pos2019", i)
+        c = db.cursor()
+        for itb in range(0,100):
+            sql_item = "select SalesNo,storeSysCode from pos_salesh_"+str(itb)+" limit 1;"
+            c.execute(sql_item)
+            row = c.fetchone()
+            while row:
+                print(row[0],row[1])
+                ws.append([row[0],row[1]])
+                row = c.fetchone()
+    wb.save("sample.xlsx")
+    db.commit()
+    c.close()
+    db.close()
+
 if __name__ == '__main__':
     # apossaleswenjian()
-    apossalesjiaoben()
+    # apossalesjiaoben()
     # apossalesselect()
+    apossalestable()
