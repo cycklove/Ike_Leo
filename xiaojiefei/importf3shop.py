@@ -11,7 +11,7 @@ def selectPath():
 
 def insert_deta():
     try:
-        db = pymssql.connect("192.168.6.249", "fbdy", "753951", "FRXS_ERP_BASEDATA","utf8")
+        db = pymssql.connect("192.168.8.208", "sa", "AAAaaa123", "FRXS_ERP_BASEDATA","utf8")
 
         lujing = en1.get()
 
@@ -50,10 +50,10 @@ path = StringVar()
 
 photo = PhotoImage(file="D:\PycharmProjects\Ike_Leo\爬虫\\leo3.gif")#file：t图片路径
 
-lb3 = Label(baseframe,text = "",justify = LEFT,image = photo,compound = CENTER,font=("微软雅黑",18))
+lb3 = Label(baseframe,text = "",justify = LEFT,image = photo,compound = CENTER,font=("微软雅黑",28))
 lb3.place(x=1,y=1,width=500,height=600)
 
-lb0 = Label(baseframe,text="杨涵之小劫匪F3门店导入工具",bg="white",fg="black",font=("微软雅黑",12))
+lb0 = Label(baseframe,text="杨涵之小劫匪F3门店导入工具",bg="white",fg="blue",font=("微软雅黑",12))
 # lb1.pack()
 lb0.place(x=140,y=2)
 
