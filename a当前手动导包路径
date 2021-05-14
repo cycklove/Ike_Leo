@@ -1,5 +1,5 @@
 D:\Program Files\Anaconda3\envs\oop\Lib\site-packages
-D:\Program Files\Anaconda3\Lib\site-packages
+D:\ProgramData\Anaconda3\Lib\site-packages
 
 pip install --target="D:\Program Files\Anaconda3\envs\oop\Lib\site-packages" C:\Users\Ike_Leo\Desktop\PyMySQL-0.9.3-py2.py3-none-any.whl
-pip install --target="D:\Program Files\Anaconda3\Lib\site-packages" D:\pythonpackage\PyMySQL-0.9.3-py2.py3-none-any.whl
+pip install --target="D:\ProgramData\Anaconda3\Lib\site-packages" D:\pythonpackage\pymssql-2.1.5-cp36-cp36m-none-any.whl
