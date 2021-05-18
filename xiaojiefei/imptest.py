@@ -11,7 +11,7 @@ def selectPath():
 
 def insert_deta():
     try:
-        db = pymssql.connect("192.168.8.208", "sa", "AAAaaa123", "FRXS_ERP_BASEDATA","utf8")
+        db = pymssql.connect("192.168.10.84", "sa", "AAAaaa123", "cb","utf8")
 
         lujing = en1.get()
 
@@ -27,8 +27,8 @@ def insert_deta():
         for rx in range(2, rows + 1):
             for cx in range(1, columns + 1):
                 row_data.append(str(ws.cell(row=rx, column=cx).value))
-            sql = "INSERT INTO shop(wid,ShopCode,ShopType,ShopName,ShopAccount,SettleType,LinkMan,Telephone,SettleTimeType,CreditLevel,CreditAmt,ShopArea,TotalPoint,CreateUserID )VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-            cursor.execute(sql,(row_data[0], row_data[1], row_data[2], row_data[3], row_data[4], row_data[5], row_data[6], row_data[7],row_data[8], row_data[9], row_data[10], row_data[11], row_data[12], row_data[13])) # 执行sql语句
+            sql = "INSERT INTO tb002(bm,mc )VALUES(%s,%s)"
+            cursor.execute(sql,(row_data[0], row_data[1])) # 执行sql语句
             row_data = []
 
             db.commit()
