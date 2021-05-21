@@ -84,7 +84,7 @@ baseframe = tkinter.Tk()
 baseframe.geometry("800x600")
 baseframe.wm_title("英汉翻译词典")
 
-photo = tkinter.PhotoImage(file="D:\PycharmProjects\Ike_Leo\爬虫\\bg.gif")#file：t图片路径
+photo = tkinter.PhotoImage(file="bg.gif")#file：t图片路径
 
 lb3 = tkinter.Label(baseframe,text = "",justify = tkinter.LEFT,image = photo,compound = tkinter.CENTER,font=("微软雅黑"))
 lb3.place(x=1,y=1,width=800,height=600)
