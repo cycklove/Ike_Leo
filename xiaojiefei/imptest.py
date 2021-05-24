@@ -48,7 +48,7 @@ baseframe.geometry("500x400")
 
 path = StringVar()
 
-photo = PhotoImage(file="D:\PycharmProjects\Ike_Leo\爬虫\\bg.gif")#file：t图片路径
+photo = PhotoImage(file="bg.gif")#file：t图片路径
 
 lb3 = Label(baseframe,text = "",justify = LEFT,image = photo,compound = CENTER,font=("微软雅黑",28))
 lb3.place(x=1,y=1,width=500,height=600)
