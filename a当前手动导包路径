@@ -5,7 +5,7 @@ pip install --target="D:\Program Files\Anaconda3\envs\oop\Lib\site-packages" C:\
 pip install --target="D:\ProgramData\Anaconda3\Lib\site-packages" D:\pythonpackage\pymssql-2.1.5-cp36-cp36m-none-any.whl
 
 
-pyinstaller  -w -i 07.ico --clean mongoselectdelete.py
+pyinstaller  -w -i 07.ico mongoselectdelete.py
 
 RuntimeError: No metadata path found for distribution 'greenlet'
 pip  install --ignore-installed greenlet
@@ -14,8 +14,3 @@ AttributeError: Module 'PyQt5' has no attribute '__version__'
 重新装一下numpy这个包
 pip uninstall numpy
 pip install numpy
-
-
-24683.95
-6021.33
-1220.42
