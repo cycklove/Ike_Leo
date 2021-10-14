@@ -16,7 +16,8 @@ def insert_deta():
         lujing = en1.get()
 
         wb = load_workbook(lujing)  # 文件名下
-        ws = wb.get_sheet_by_name("Sheet1")  # execl里面的worksheet1
+        # ws = wb.get_sheet_by_name("Sheet1")  # execl里面的worksheet1
+        ws = wb["Sheet1"]
 
         cursor = db.cursor()
 
