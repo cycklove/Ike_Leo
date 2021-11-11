@@ -43,7 +43,7 @@ def zbzghmbl():
                 row_data.append(ws.cell(row=rx, column=cx).value)
             i = i+1
             jdt['value'] = i + 1
-            sql = "UPDATE fr_zbzjxdc set ghmbl=:4 where 品牌=:1 and 日期=:2 and 区域=:3"
+            sql = "UPDATE fr_zbzjxdc set ghmbl=:4 where 品牌=:1 and 日期=:2 and 区域=:3 and exists ( select 1 from (select 区域,日期,品牌,max(发货工厂编码) rm from fr_zbzjxdc where 品牌=:1  and 日期=:2 and 区域=:3 group by 区域,日期,品牌) a where 区域=fr_zbzjxdc.区域 and 日期=fr_zbzjxdc.日期 and rm=fr_zbzjxdc.发货工厂编码)"
             data = (row_data[3], row_data[0],row_data[1], row_data[2])
 
             print(data)
@@ -91,7 +91,7 @@ def czwxbzghmbl():
                 row_data.append(ws.cell(row=rx, column=cx).value)
             i = i+1
             jdt['value'] = i + 1
-            sql = "UPDATE fr_czwxbzyjdc set ghmblxiao=:3,ghmbla=:4,ghmblxin=:5 where 日期=:1 and 区域=:2"
+            sql = "UPDATE fr_czwxbzyjdc set ghmblxiao=:3,ghmbla=:4,ghmblxin=:5 where 日期=:1 and 区域=:2 and exists ( select 1 from (select 区域,日期,max(发货工厂编码) rm from fr_czwxbzyjdc where 日期=:1 and 区域=:2  group by 区域,日期) a where 区域=fr_czwxbzyjdc.区域 and 日期=fr_czwxbzyjdc.日期 and rm=fr_czwxbzyjdc.发货工厂编码)"
             data = (row_data[2],row_data[3],row_data[4],row_data[0],row_data[1])
 
             print(data)
@@ -144,11 +144,18 @@ def ddqxbzghmbl():
 
             print(data)
             cursor.execute(sql,data) # 执行sql语句
+
             row_data = []
             baseframe.update()
             lb62["text"] = i
             print(i)
             db.commit()
+
+        sql2 = "update fr_ddqxbzyjdc set ghmblxiao='0',ghmbla='0',ghmblxin='0',ghmblzs='0' where exists ( select 1 from (select 区域,日期,max(发货工厂编码) rm from fr_ddqxbzyjdc group by 区域,日期 having count(*)>1) a where 区域=fr_ddqxbzyjdc.区域 and 日期=fr_ddqxbzyjdc.日期 and rm=fr_ddqxbzyjdc.发货工厂编码)"
+
+        cursor.execute(sql2)
+        db.commit()
+
         cursor.close()
         db.close()# 关闭连接
 
