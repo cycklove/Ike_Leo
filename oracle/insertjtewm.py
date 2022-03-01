@@ -146,8 +146,6 @@ lb4 = tkinter.Label(baseframe, text="©Develop:Ike...Leo", bg="white", fg="green
 # lb1.grid(row=0,column=0,stick=tkinter.W)
 lb4.place(x=240, y=500)
 
-<<<<<<< HEAD
 baseframe.mainloop()
-=======
-baseframe.mainloop()
->>>>>>> origin/Ike_leo
+
+
