@@ -5,7 +5,7 @@ import hashlib
 import pymysql
 
 
-class Query:
+class ike:
     def __init__(self, app=None):
         self.app = app
 
@@ -45,7 +45,55 @@ class Query:
             except TypeError:
                 tkinter.messagebox.showerror(title="错误", message="请注册后再进行登录！")
 
+        def user_check2(self):
+            user_check()
+
         tk.Button(login, text="登录", bg='white', font=("Arial,9"),width=12, height=0, command=user_check).place(x=250, y=250)
+        entry2.bind("<Return>",user_check2)
+
+    def registercheck(self):
+        registercheck = tk.Toplevel(app)
+        registercheck.title('用户注册')
+        registercheck.geometry("600x400")
+        tk.Label(registercheck, text="输入管理员验证", font=("KaiTi", 40)).place(x=100, y=20)
+        tk.Label(registercheck, text='用户名：', font=("Arial", 9)).place(x=80, y=120)
+        tk.Label(registercheck, text='密码：', font=('Arial', 9)).place(x=80, y=150)
+        entry1 = tk.Entry(registercheck, font=("Arial, 9"), width=46, )
+        entry2 = tk.Entry(registercheck, font=("Arial, 9"), width=46, show="*")
+        entry1.pack()
+        entry2.pack()
+        entry1.place(x=180, y=120, width=350, height=25)
+        entry2.place(x=180, y=150, width=350, height=25)
+
+        def user_register():
+            user_name = entry1.get()
+            user_code = entry2.get()
+
+            hl = hashlib.md5()
+            hl.update(user_code.encode(encoding='utf-8'))
+            pwd = hl.hexdigest()
+
+            content = "SELECT * FROM user_info WHERE user_name = 'admin';"
+            data = self.connect_DBS(database="guanli", content=content)
+            try:
+                if user_name == data[1] and pwd == data[2]:
+                    tkinter.messagebox.showinfo(title="信息", message="验证成功！")
+                    self.register()
+                    registercheck.destroy()
+                elif user_name != data[1]:
+                    tkinter.messagebox.showerror(title="错误", message="请使用管理员验证！")
+                elif user_name == data[1] and user_code != data[2]:
+                    tkinter.messagebox.showerror(title="错误", message="密码错误！")
+            except TypeError:
+                tkinter.messagebox.showerror(title="错误", message="请使用管理员验证！")
+
+        def user_register2(self):
+            user_register()
+
+
+        tk.Button(registercheck, text="确定", bg='white', font=("Arial,9"),width=12, height=0, command=user_register).place(x=250, y=250)
+        entry2.bind("<Return>",user_register2)
+
 
     def register(self):
 
@@ -84,7 +132,12 @@ class Query:
             elif sl > 0:
                 tkinter.messagebox.showwarning(title="警告", message="用户名已经存在！")
 
+        def user_register2(self):
+            user_register()
+
         tk.Button(register, text="注册", bg='white', font=("Arial,9"),width=12, height=0, command=user_register).place(x=250, y=250)
+        entry2.bind("<Return>", user_register2)
+
 
     def connect_DBS(self, database, content):
         db = pymysql.connect(host="192.168.1.165", user="ddqdbjk",password="AAAaaa123", database=database)
@@ -608,7 +661,7 @@ command=self.vaccination_person_info_query).place(x=320, y=160)
     def main_window(self):
 
         tk.Button(app, text='登录', bg='white', font=("Arial,12"),width=12, height=1, command=self.login).place(x=260, y=200)
-        tk.Button(app, text='注册', bg='white', font=("Arial,12"),width=12, height=1, command=self.register).place(x=260, y=240)
+        tk.Button(app, text='注册', bg='white', font=("Arial,12"),width=12, height=1, command=self.registercheck).place(x=260, y=240)
         tk.Button(app, text='退出', bg='white', font=("Arial,12"), width=12,height=1, command=self.quit_mainloop).place(x=260, y=280)
 
 
@@ -619,6 +672,6 @@ if __name__ == "__main__":
     image_file = tk.PhotoImage(file='./bg.gif')
     image = tk.Label(app, justify=tk.LEFT,image=image_file, compound=tk.CENTER)
     image.pack()
-    query = Query(app=app)
-    query.main_window()
+    ike = ike(app=app)
+    ike.main_window()
     app.mainloop()
