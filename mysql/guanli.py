@@ -6,7 +6,7 @@ import pymysql
 
 
 class ike:
-    def __init__(self, app=None):
+    def __init__(self, app):
         self.app = app
 
     def login(self):
