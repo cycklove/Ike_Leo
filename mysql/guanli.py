@@ -202,7 +202,7 @@ class ike:
             print(type(text3))
             content = "INSERT INTO vaccine_info (" \
                       "vaccine_num, vaccine_name, company_name, company_num, size, buy_price, pre_sale_price, limit_up, limit_down" \
-                      ") VALUES (%s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
+                      ") VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
                           text1, text2, text3, text4, text5, text6, text7, text8, text9)
             print(content)
             self.connect_DBS(database="guanli", content=content)
@@ -229,7 +229,7 @@ class ike:
         add_vaccine_distr_info.geometry("600x400")
         tk.Label(add_vaccine_distr_info, text='商品分配单号：',font=("Arial", 9)).place(x=80, y=60)
         tk.Label(add_vaccine_distr_info, text='       日期：',font=('Arial', 9)).place(x=80, y=90)
-        tk.Label(add_vaccine_distr_info, text='   商品批号：',font=('Arial', 9)).place(x=80, y=120)
+        tk.Label(add_vaccine_distr_info, text='   商品编码：',font=('Arial', 9)).place(x=80, y=120)
         tk.Label(add_vaccine_distr_info, text='   商品名称：',font=('Arial', 9)).place(x=80, y=150)
         tk.Label(add_vaccine_distr_info, text='   企业编号：',font=('Arial', 9)).place(x=80, y=180)
         tk.Label(add_vaccine_distr_info, text=' 质检员编号：', font=('Arial', 9)).place(x=80, y=210)
@@ -266,7 +266,7 @@ class ike:
             text7 = entry7.get()
             content = "INSERT INTO vaccine_distr_info (" \
                       "vaccine_distr_num, date, vaccine_num, vaccine_name, company_num, operator_num, num" \
-                      ") VALUES (%s, '%s', '%s', '%s', '%s', '%s', '%s');" % (
+                      ") VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
                           text1, text2, text3, text4, text5, text6, text7)
             print(content)
             self.connect_DBS(database="guanli", content=content)
@@ -287,10 +287,10 @@ class ike:
 
     def add_vaccine_maintenance_info(self):
         vaccine_maintenance_info = tk.Toplevel(app)
-        vaccine_maintenance_info.title('添加商品养护信息')
+        vaccine_maintenance_info.title('添加商品维护信息')
         vaccine_maintenance_info.geometry("600x400")
-        tk.Label(vaccine_maintenance_info, text='养护商品批号：',font=("Arial", 9)).place(x=80, y=60)
-        tk.Label(vaccine_maintenance_info, text='养护商品名称：',font=('Arial', 9)).place(x=80, y=90)
+        tk.Label(vaccine_maintenance_info, text='维护商品编码：',font=("Arial", 9)).place(x=80, y=60)
+        tk.Label(vaccine_maintenance_info, text='维护商品名称：',font=('Arial', 9)).place(x=80, y=90)
         tk.Label(vaccine_maintenance_info, text=' 管理员编号：',font=('Arial', 9)).place(x=80, y=120)
         tk.Label(vaccine_maintenance_info, text=' 管理员姓名：',font=('Arial', 9)).place(x=80, y=150)
         tk.Label(vaccine_maintenance_info, text='   商品时间：',font=('Arial', 9)).place(x=80, y=180)
@@ -339,7 +339,7 @@ class ike:
             print(type(text3))
             content = "INSERT INTO vaccine_maintenance_info (" \
                       "vaccine_maintenance_num, vaccine_maintenance_name, admin_num, admin_name, maintenance_time, cold_storage_temp, freezer_temp, equipment_operation, alter_info" \
-                      ") VALUES (%s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
+                      ") VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
                           text1, text2, text3, text4, text5, text6, text7, text8, text9)
             print(content)
             self.connect_DBS(database="guanli", content=content)
@@ -369,7 +369,7 @@ class ike:
         tk.Label(add_vaccination_person_info, text='年龄：',font=('Arial', 9)).place(x=80, y=120)
         tk.Label(add_vaccination_person_info, text='身份证号：',font=('Arial', 9)).place(x=80, y=150)
         tk.Label(add_vaccination_person_info, text='家庭住址：',font=('Arial', 9)).place(x=80, y=180)
-        tk.Label(add_vaccination_person_info, text='是否关联：',font=('Arial', 9)).place(x=80, y=210)
+        tk.Label(add_vaccination_person_info, text='电话：',font=('Arial', 9)).place(x=80, y=210)
         tk.Label(add_vaccination_person_info, text='关联时间：',font=('Arial', 9)).place(x=80, y=240)
         entry1 = tk.Entry(add_vaccination_person_info,font=("Arial, 9"), width=46)
         entry2 = tk.Entry(add_vaccination_person_info,font=("Arial, 9"), width=46)
@@ -429,7 +429,7 @@ class ike:
         entry = tk.Entry(query, width=30)
         entry.pack()
         entry.place(x=200, y=80)
-        tk.Label(query, text="请输入商品批号：", font=("Arial", 9)).place(x=50, y=80)
+        tk.Label(query, text="请输入商品编码：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
         text1 = tk.Text(query, width=50, height=20)
         text1.pack()
@@ -440,8 +440,28 @@ class ike:
             print(vaccine_num)
             content = "SELECT * FROM vaccine_info WHERE vaccine_num = %s;" % vaccine_num
             data = self.connect_DBS(database="guanli", content=content)
+
+            rtdd1 = (data[0])
+            rtdd2 = (data[1])
+            rtdd3 = (data[2])
+            rtdd4 = (data[3])
+            rtdd5 = (data[4])
+            rtdd6 = (data[5])
+            rtdd7 = (data[6])
+            rtdd8 = (data[7])
+            rtdd9 = (data[8])
+
             text1.delete(1.0, "end")
-            text1.insert(chars="{}".format(data), index="insert")
+            ##text1.insert(chars="{}".format(data), index="insert")
+            text1.insert('insert',"商品编码：%s \n"%rtdd1)
+            text1.insert('insert', "商品名称：%s \n" % rtdd2)
+            text1.insert('insert', "企业名称：%s \n" % rtdd3)
+            text1.insert('insert', "企业编码：%s \n" % rtdd4)
+            text1.insert('insert', "规格：%s \n" % rtdd5)
+            text1.insert('insert', "进价：%s \n" % rtdd6)
+            text1.insert('insert', "销售价：%s \n" % rtdd7)
+            text1.insert('insert', "最大进价：%s \n" % rtdd8)
+            text1.insert('insert', "最小进价：%s \n" % rtdd9)
 
         tk.Button(query, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=75)
 
@@ -461,21 +481,39 @@ class ike:
         def base_query():
             ID_num = entry.get()
             print(ID_num)
-            content = "SELECT * FROM vaccination_person_info WHERE ID_num = %s;" % ID_num
+            content = "SELECT * FROM vaccination_person_info WHERE instr(ID_num,%s)>0;" % ID_num
             data = self.connect_DBS(database="guanli", content=content)
+
+            rtdd1 = (data[0])
+            rtdd2 = (data[1])
+            rtdd3 = (data[2])
+            rtdd4 = (data[3])
+            rtdd5 = (data[4])
+            rtdd6 = (data[5])
+            rtdd7 = (data[6])
+            rtdd8 = (data[7])
+
             text1.delete(1.0, "end")
-            text1.insert(chars="{}".format(data), index="insert")
+            #text1.insert(chars="{}".format(data), index="insert")
+            text1.insert('insert', "ID：%s \n" % rtdd1)
+            text1.insert('insert', "姓名：%s \n" % rtdd2)
+            text1.insert('insert', "性别：%s \n" % rtdd3)
+            text1.insert('insert', "年龄：%s \n" % rtdd4)
+            text1.insert('insert', "身份证号：%s \n" % rtdd5)
+            text1.insert('insert', "地址：%s \n" % rtdd6)
+            text1.insert('insert', "电话：%s \n" % rtdd7)
+            text1.insert('insert', "创建时间：%s \n" % rtdd8)
 
         tk.Button(query, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=75)
 
     def vaccination_maintenance_info_query(self):
         query = tk.Toplevel(app)
-        query.title('商品养护信息查询')
+        query.title('商品维护信息查询')
         query.geometry("600x400")
         entry = tk.Entry(query, width=30)
         entry.pack()
         entry.place(x=200, y=80)
-        tk.Label(query, text="请输入商品养护批号：", font=("Arial", 9)).place(x=50, y=80)
+        tk.Label(query, text="请输入商品编码：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
         text1 = tk.Text(query, width=50, height=20)
         text1.pack()
@@ -484,10 +522,29 @@ class ike:
         def base_query():
             vaccine_maintenance_num = entry.get()
             print(vaccine_maintenance_num)
-            content = "SELECT * FROM vaccine_maintenance_info WHERE vaccine_maintenance_num = %s;" % vaccine_maintenance_num
+            content = "SELECT * FROM vaccine_maintenance_info WHERE instr(vaccine_maintenance_num,'%s')>0 limit 1;" % vaccine_maintenance_num
             data = self.connect_DBS(database="guanli", content=content)
+            rtdd1 = (data[0])
+            rtdd2 = (data[1])
+            rtdd3 = (data[2])
+            rtdd4 = (data[3])
+            rtdd5 = (data[4])
+            rtdd6 = (data[5])
+            rtdd7 = (data[6])
+            rtdd8 = (data[7])
+            rtdd9 = (data[8])
+
             text1.delete(1.0, "end")
-            text1.insert(chars="{}".format(data), index="insert")
+            ##text1.insert(chars="{}".format(data), index="insert")
+            text1.insert('insert', "商品编码：%s \n" % rtdd1)
+            text1.insert('insert', "商品名称：%s \n" % rtdd2)
+            text1.insert('insert', "管理员编码：%s \n" % rtdd3)
+            text1.insert('insert', "管理员姓名：%s \n" % rtdd4)
+            text1.insert('insert', "商品时间：%s \n" % rtdd5)
+            text1.insert('insert', "冷藏室温度：%s \n" % rtdd6)
+            text1.insert('insert', "冷冻室温度：%s \n" % rtdd7)
+            text1.insert('insert', "设备运转情况：%s \n" % rtdd8)
+            text1.insert('insert', "是否报警：%s \n" % rtdd9)
 
         tk.Button(query, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=75)
 
@@ -507,10 +564,25 @@ class ike:
         def base_query():
             vaccine_distr_num = entry.get()
             print(vaccine_distr_num)
-            content = "SELECT * FROM vaccine_distr_info WHERE vaccine_distr_num = %s;" % vaccine_distr_num
+            content = "SELECT * FROM vaccine_distr_info WHERE instr(vaccine_distr_num,'%s')>0;" % vaccine_distr_num
             data = self.connect_DBS(database="guanli", content=content)
+            rtdd1 = (data[0])
+            rtdd2 = (data[1])
+            rtdd3 = (data[2])
+            rtdd4 = (data[3])
+            rtdd5 = (data[4])
+            rtdd6 = (data[5])
+            rtdd7 = (data[6])
+
             text1.delete(1.0, "end")
-            text1.insert(chars="{}".format(data), index="insert")
+            ##text1.insert(chars="{}".format(data), index="insert")
+            text1.insert('insert', "单号：%s \n" % rtdd1)
+            text1.insert('insert', "日期：%s \n" % rtdd2)
+            text1.insert('insert', "商品编码：%s \n" % rtdd3)
+            text1.insert('insert', "商品名称：%s \n" % rtdd4)
+            text1.insert('insert', "企业编码：%s \n" % rtdd5)
+            text1.insert('insert', "质检员：%s \n" % rtdd6)
+            text1.insert('insert', "数量：%s \n" % rtdd7)
 
         tk.Button(query, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=75)
 
@@ -532,8 +604,27 @@ class ike:
             print(vaccine_del_num)
             content = "SELECT * FROM vaccine_info WHERE vaccine_num = %s;" % vaccine_del_num
             data = self.connect_DBS(database="guanli", content=content)
+            rtdd1 = (data[0])
+            rtdd2 = (data[1])
+            rtdd3 = (data[2])
+            rtdd4 = (data[3])
+            rtdd5 = (data[4])
+            rtdd6 = (data[5])
+            rtdd7 = (data[6])
+            rtdd8 = (data[7])
+            rtdd9 = (data[8])
+
             text1.delete(1.0, "end")
-            text1.insert(chars="{}".format(data), index="insert")
+            ##text1.insert(chars="{}".format(data), index="insert")
+            text1.insert('insert', "商品编码：%s \n" % rtdd1)
+            text1.insert('insert', "商品名称：%s \n" % rtdd2)
+            text1.insert('insert', "企业名称：%s \n" % rtdd3)
+            text1.insert('insert', "企业编码：%s \n" % rtdd4)
+            text1.insert('insert', "规格：%s \n" % rtdd5)
+            text1.insert('insert', "进价：%s \n" % rtdd6)
+            text1.insert('insert', "销售价：%s \n" % rtdd7)
+            text1.insert('insert', "最大进价：%s \n" % rtdd8)
+            text1.insert('insert', "最小进价：%s \n" % rtdd9)
 
         def del_infor():
             vaccine_del_num = entry.get()
@@ -541,7 +632,7 @@ class ike:
             content = "DELETE FROM vaccine_info  WHERE vaccine_num = %s;" % vaccine_del_num
             data = self.connect_DBS(database="guanli", content=content)
             tkinter.messagebox.showinfo(title="信息", message="商品批号：{}数据已删除！".format(vaccine_del_num))
-            return None
+
 
         tk.Button(del_info, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=75)
         tk.Button(del_info, text='删除', bg='white', font=("Arial,12"),width=9, height=0, command=del_infor).place(x=280, y=400)
@@ -553,8 +644,8 @@ class ike:
         entry = tk.Entry(modify_info, width=30)
         entry.pack()
         entry.place(x=200, y=60)
-        tk.Label(modify_info, text="请输入商品分配单号：",font=("Arial", 9)).place(x=50, y=60)
-        tk.Label(modify_info, text='商品批号：', font=("Arial", 9)).place(x=80, y=100)
+        tk.Label(modify_info, text="请输入商品编码：",font=("Arial", 9)).place(x=50, y=60)
+        tk.Label(modify_info, text='商品编码：', font=("Arial", 9)).place(x=80, y=100)
         tk.Label(modify_info, text='商品名称：', font=('Arial', 9)).place(x=80, y=130)
         tk.Label(modify_info, text='企业名称：', font=('Arial', 9)).place(x=80, y=160)
         tk.Label(modify_info, text='企业编号：', font=('Arial', 9)).place(x=80, y=190)
@@ -593,7 +684,7 @@ class ike:
 
         def base_query():
             vaccine_modify_num = entry.get()
-            content = "SELECT * FROM vaccine_info WHERE vaccine_num = %s;" % vaccine_modify_num
+            content = "SELECT * FROM vaccine_info WHERE instr(vaccine_num,'%s')>0 limit 1;" % vaccine_modify_num
             data = self.connect_DBS(database="guanli", content=content)
             text1.delete(1.0, "end")
             text2.delete(1.0, "end")
@@ -622,12 +713,12 @@ class ike:
                       text7.get("1.0", "end")[0:-1], text8.get("1.0", "end")[0:-1], text9.get("1.0", "end")[0:-1]]
             str_ls = [str(i) for i in str_ls]
             print(str_ls)
-            content = "UPDATE vaccine_info  SET vaccine_num='%s', vaccine_name='%s', company_name='%s', vaccine_num='%s'" \
-                      ", size='%s', buy_price='%s', pre_sale_price='%s', limit_up='%s', limit_down='%s' WHERE vaccine_num = '%s';" % (
+            content = "UPDATE vaccine_info  SET vaccine_num='%s', vaccine_name='%s', company_name='%s', company_num='%s'" \
+                      ", size='%s', buy_price='%s', pre_sale_price='%s', limit_up='%s', limit_down='%s' WHERE instr(vaccine_num,'%s')>0;" % (
                           str_ls[0], str_ls[1], str_ls[2], str_ls[3], str_ls[4], str_ls[5], str_ls[6], str_ls[7], str_ls[8],
                           vaccine_modify_num)
             self.connect_DBS(database="guanli", content=content)
-            tkinter.messagebox.showinfo(title="信息", message="商品分配单号：{}数据修改成功！".format(vaccine_modify_num))
+            tkinter.messagebox.showinfo(title="信息", message="商品：{}数据修改成功！".format(vaccine_modify_num))
             return None
 
         tk.Button(modify_info, text='查询', bg='white', font=("Arial,12"),width=9, height=0, command=base_query).place(x=450, y=55)
@@ -640,10 +731,10 @@ class ike:
         tk.Label(options, text="欢迎使用！", font=("KaiTi", 40)).place(x=180, y=15)
         tk.Button(options, text='新建商品', bg='white', font=("Arial,12"), width=20, height=2,command=self.add_vacc_info).place(x=100, y=100)
         tk.Button(options, text='新建商品分配信息', bg='white', font=("Arial,12"), width=20, height=2,command=self.add_vaccine_distr_info).place(x=100, y=160)
-        tk.Button(options, text='新建商品养护信息', bg='white', font=("Arial,12"), width=20, height=2,command=self.add_vaccine_maintenance_info).place(x=100, y=220)
+        tk.Button(options, text='新建商品维护信息', bg='white', font=("Arial,12"), width=20, height=2,command=self.add_vaccine_maintenance_info).place(x=100, y=220)
         tk.Button(options, text='新建商品关联人信息', bg='white', font=("Arial,12"), width=20, height=2,command=self.add_vaccination_person_info).place(x=100, y=280)
         tk.Button(options, text='查询商品分配信息', bg='white', font=("Arial,12"), width=20, height=2,command=self.vaccine_distr_info_query).place(x=100, y=340)
-        tk.Button(options, text='查询商品养护信息', bg='white', font=("Arial,12"), width=20, height=2,
+        tk.Button(options, text='查询商品维护信息', bg='white', font=("Arial,12"), width=20, height=2,
 command=self.vaccination_maintenance_info_query).place(x=320, y=100)
         tk.Button(options, text='查询人员信息', bg='white', font=("Arial,12"), width=20, height=2,
 command=self.vaccination_person_info_query).place(x=320, y=160)
