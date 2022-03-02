@@ -431,7 +431,7 @@ class ike:
         entry.place(x=200, y=80)
         tk.Label(query, text="请输入商品编码：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
-        text1 = tk.Text(query, width=50, height=20)
+        text1 = tk.Text(query, font=("Arial,18"),width=50, height=20)
         text1.pack()
         text1.place(x=150, y=120)
 
@@ -474,7 +474,7 @@ class ike:
         entry.place(x=200, y=80)
         tk.Label(query, text="请输入关联人员身份证号：",font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
-        text1 = tk.Text(query, width=50, height=20)
+        text1 = tk.Text(query, font=("Arial,18"),width=50, height=20)
         text1.pack()
         text1.place(x=150, y=120)
 
@@ -515,7 +515,7 @@ class ike:
         entry.place(x=200, y=80)
         tk.Label(query, text="请输入商品编码：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
-        text1 = tk.Text(query, width=50, height=20)
+        text1 = tk.Text(query, font=("Arial,18"),width=50, height=20)
         text1.pack()
         text1.place(x=150, y=120)
 
@@ -557,7 +557,7 @@ class ike:
         entry.place(x=200, y=80)
         tk.Label(query, text="请输入商品分配单号：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(query, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
-        text1 = tk.Text(query, width=50, height=20)
+        text1 = tk.Text(query, font=("Arial,18"),width=50, height=20)
         text1.pack()
         text1.place(x=150, y=120)
 
@@ -595,7 +595,7 @@ class ike:
         entry.place(x=200, y=80)
         tk.Label(del_info, text="请输入商品批号：", font=("Arial", 9)).place(x=50, y=80)
         tk.Label(del_info, text='查询结果：', font=('Arial', 9)).place(x=50, y=120)
-        text1 = tk.Text(del_info, width=50, height=20)
+        text1 = tk.Text(del_info, font=("Arial,18"),width=50, height=20)
         text1.pack()
         text1.place(x=150, y=120)
 
