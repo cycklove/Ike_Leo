@@ -3,8 +3,11 @@ from email.mime.text import MIMEText
 from email.header import Header
 import cx_Oracle as oracle
 ##以下解决Linux下SQL返回中文显示???的问题
+import time
+from apscheduler.schedulers.blocking import BlockingScheduler
 import os
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'
+
 
 class IkeSendMail:
 
@@ -53,7 +56,7 @@ class IkeSendMail:
             mail_pass = "TZDRBINGWJFZZSGE"  # 口令
 
             sender = 'saiyuyu3@163.com'
-            receivers = ['saiyuyu3@163.com','283457474@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+            receivers = ['saiyuyu3@163.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 
             message = MIMEText("<br/>".join(msg), 'html', 'utf8')
             message['From'] = "Ike_Leo"
@@ -82,6 +85,7 @@ class IkeSendMail:
             # print(content2)
             self.connect_DBS(content=content2,bs=2)
         else:
+            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             pass
 
 
@@ -89,3 +93,8 @@ if __name__ == '__main__':
     sm = IkeSendMail()
     getid = sm.send_mail()
     sm.upsendmail(getid=getid)
+    # #以下为自动调度，每3秒一次
+    # scheduler = BlockingScheduler()
+    # scheduler.add_job(sm.send_mail, 'interval', seconds=3)
+    # scheduler.add_job(sm.upsendmail, 'interval', seconds=3,args=[getid])
+    # scheduler.start()
